@@ -15,12 +15,8 @@ const TitleBlockContentWrapper = styled.div`
 	width: -webkit-fill-available;
 `;
 
-const TitleBlockComponent = ({ deleteNode, editor }: NodeViewProps) => {
+const Section = ({ deleteNode, editor }: NodeViewProps) => {
 	const { isEditable } = editor;
-
-	const addParagraphBlock = () => {
-		editor.chain().focus().insertContentAt(0, { type: "paragraph" }).run();
-	};
 
 	return (
 		<NodeViewWrapper>
@@ -34,4 +30,4 @@ const TitleBlockComponent = ({ deleteNode, editor }: NodeViewProps) => {
 	);
 };
 
-export default TitleBlockComponent;
+export default Section;

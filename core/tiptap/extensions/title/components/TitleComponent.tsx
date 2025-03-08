@@ -21,8 +21,27 @@ const StyledDiv = styled.div`
 const TitleComponent = ({ editor, getPos }: { editor: Editor; getPos: () => number }) => {
 	const isEditable = editor.isEditable;
 
-	const addNewInputBlock = () => {
-		editor.chain().focus().insertContentAt(0, { type: "title" }).run();
+	const addNewInputBlock = (event: React.MouseEvent<HTMLButtonElement>) => {
+		event.preventDefault();
+		event.stopPropagation();
+
+		const pos = getPos();
+		const $pos = editor.state.doc.resolve(pos);
+		const endPos = $pos.end();
+		const schema = editor.state.schema;
+
+		editor
+			.chain()
+			.focus()
+			.insertContentAt(
+				endPos,
+				schema.nodes.paragraphInput.create(null, [
+					schema.nodes.paragraph.create(),
+					schema.nodes.paragraph.create(),
+				]),
+			)
+			.focus(endPos + 2)
+			.run();
 	};
 
 	return (
@@ -32,7 +51,11 @@ const TitleComponent = ({ editor, getPos }: { editor: Editor; getPos: () => numb
 					<NodeViewContent />
 				</div>
 				{isEditable && (
-					<Button style={{ paddingTop: "0", paddingBottom: "0" }}>
+					<Button
+						style={{ paddingTop: "0", paddingBottom: "0" }}
+						onClickCapture={addNewInputBlock}
+						contentEditable={false}
+					>
 						<FontAwesomeIcon icon={faPlus} />
 						<span>Add Title</span>
 					</Button>
