@@ -2,9 +2,9 @@ import type { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from "@emotion/styled";
 
-const Icon = ({ icon, className }: { icon: IconProp; className?: string }) => {
+const Icon = ({ icon, className, style }: { icon: IconProp; className?: string; style?: React.CSSProperties }) => {
 	return (
-		<div className={className}>
+		<div className={className} style={style}>
 			<FontAwesomeIcon icon={icon} />
 		</div>
 	);
