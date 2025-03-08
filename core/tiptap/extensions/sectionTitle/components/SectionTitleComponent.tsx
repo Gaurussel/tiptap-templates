@@ -18,7 +18,7 @@ const StyledDiv = styled.div`
 	}
 `;
 
-const TitleComponent = ({ editor, getPos }: { editor: Editor; getPos: () => number }) => {
+const SectionTitleComponent = ({ editor, getPos }: { editor: Editor; getPos: () => number }) => {
 	const isEditable = editor.isEditable;
 
 	const addNewInputBlock = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -66,4 +66,4 @@ const TitleComponent = ({ editor, getPos }: { editor: Editor; getPos: () => numb
 	);
 };
 
-export default TitleComponent;
+export default SectionTitleComponent;

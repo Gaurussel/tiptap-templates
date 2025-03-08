@@ -9,6 +9,7 @@ const Group = styled.div`
 		align-items: center;
 		justify-content: space-between;
 		gap: 0.5em;
+		cursor: pointer;
 	}
 `;
 

@@ -3,7 +3,7 @@ import Focus from "@tiptap/extension-focus";
 import { Document } from "@tiptap/extension-document";
 import Section from "../extensions/section/models/section";
 import getInputsModels from "../extensions/inputs/models/inputs";
-import Title from "../extensions/title/models/title";
+import Title from "../extensions/sectionTitle/models/sectionTitle";
 import Placeholder from "../extensions/placeholder/models/placeholder";
 
 const getExtensions = () => {

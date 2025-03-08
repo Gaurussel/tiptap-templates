@@ -15,7 +15,7 @@ const newPlaceholder = Placeholder.configure({
 		const parentName = parentNode.type.name;
 		const nodeName = node.type.name;
 
-		if (parentName === "title" && nodeName === "paragraph") return "Write a title...";
+		if (parentName === "sectionTitle" && nodeName === "paragraph") return "Write a title...";
 		if (parentName === "paragraphInput" && nodeName === "paragraph") return "Write a paragraph...";
 
 		return "";

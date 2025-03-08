@@ -13,6 +13,22 @@ const TitleBlockWrapper = styled.div`
 
 const TitleBlockContentWrapper = styled.div`
 	width: -webkit-fill-available;
+
+	p {
+		cursor: pointer;
+	}
+
+	p:not(.has-focus) {
+		transition: background-color 0.1s ease-in-out;
+	}
+
+	p:not(.has-focus):hover {
+		background-color: oklch(0.97 0 0);
+	}
+
+	p.has-focus {
+		cursor: text;
+	}
 `;
 
 const Section = ({ deleteNode, editor }: NodeViewProps) => {
