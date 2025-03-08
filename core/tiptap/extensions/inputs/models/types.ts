@@ -8,6 +8,11 @@ export enum InputType {
 	Date = "date",
 }
 
+export enum InputContent {
+	Paragraph = "paragraph",
+	Date = "paragraph",
+}
+
 export const InputComponents: Record<InputType, ComponentType<NodeViewProps>> = {
 	[InputType.Paragraph]: ParagraphInputComponent,
 	[InputType.Date]: DateInputComponent,
