@@ -17,7 +17,7 @@ const newPlaceholder = Placeholder.configure({
 
 		if (parentName === "sectionTitle" && nodeName === "paragraph") return "Write a title...";
 		if (parentName === "paragraphInput" && nodeName === "paragraph") return "Write a paragraph...";
-
+		if (parentName === "dateInput" && nodeName === "paragraph") return "Write a paragraph...";
 		return "";
 	},
 	emptyEditorClass: "is-empty",

@@ -4,6 +4,9 @@ import { Editor, NodeViewContent, NodeViewWrapper } from "@tiptap/react";
 import { Button } from "~/components/ui/button";
 import styled from "@emotion/styled";
 import Divider from "core/utils/components/Divider";
+import PopoverSelector from "./PopoverSelector";
+import type { InputType } from "../../inputs/models/types";
+import getInputName from "../../inputs/logic/getInputName";
 
 const StyledDiv = styled.div`
 	display: flex;
@@ -21,25 +24,17 @@ const StyledDiv = styled.div`
 const SectionTitleComponent = ({ editor, getPos }: { editor: Editor; getPos: () => number }) => {
 	const isEditable = editor.isEditable;
 
-	const addNewInputBlock = (event: React.MouseEvent<HTMLButtonElement>) => {
-		event.preventDefault();
-		event.stopPropagation();
-
+	const addNewInputBlock = (type: InputType) => {
 		const pos = getPos();
 		const $pos = editor.state.doc.resolve(pos);
 		const endPos = $pos.end();
 		const schema = editor.state.schema;
+		const inputName = getInputName(type);
 
 		editor
 			.chain()
 			.focus()
-			.insertContentAt(
-				endPos,
-				schema.nodes.paragraphInput.create(null, [
-					schema.nodes.paragraph.create(),
-					schema.nodes.paragraph.create(),
-				]),
-			)
+			.insertContentAt(endPos, schema.nodes[inputName].create(null, [schema.nodes.paragraph.create()]))
 			.focus(endPos + 2)
 			.run();
 	};
@@ -51,14 +46,15 @@ const SectionTitleComponent = ({ editor, getPos }: { editor: Editor; getPos: () 
 					<NodeViewContent />
 				</div>
 				{isEditable && (
-					<Button
-						style={{ paddingTop: "0", paddingBottom: "0" }}
-						onClickCapture={addNewInputBlock}
-						contentEditable={false}
-					>
-						<FontAwesomeIcon icon={faPlus} />
-						<span>Add Title</span>
-					</Button>
+					<PopoverSelector
+						onClick={addNewInputBlock}
+						trigger={
+							<Button style={{ paddingTop: "0", paddingBottom: "0" }} contentEditable={false}>
+								<FontAwesomeIcon icon={faPlus} />
+								<span>Add Title</span>
+							</Button>
+						}
+					/>
 				)}
 			</StyledDiv>
 			<Divider style={{ marginBottom: "0.25em" }} />
