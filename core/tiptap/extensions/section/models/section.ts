@@ -5,7 +5,7 @@ import SectionComponent from "../components/SectionComponent";
 const Section = Node.create({
 	name: "section",
 	group: "block",
-	content: "sectionTitle inputs+",
+	content: "sectionTitle inputBlocks+",
 
 	parseHTML() {
 		return [{ tag: "section-react-component" }];

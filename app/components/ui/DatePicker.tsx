@@ -6,10 +6,11 @@ import { useState } from "react";
 
 interface DatePickerProps {
 	onChange?: (date: Date) => void;
+	isOpen?: boolean;
 	initialDate?: Date;
 }
 
-const DatePicker = ({ onChange, initialDate }: DatePickerProps) => {
+const DatePicker = ({ onChange, initialDate, isOpen = false }: DatePickerProps) => {
 	const [date, setDate] = useState<Date>(initialDate);
 
 	const saveData = (date: Date) => {
@@ -18,7 +19,7 @@ const DatePicker = ({ onChange, initialDate }: DatePickerProps) => {
 	};
 
 	return (
-		<Popover>
+		<Popover open={isOpen}>
 			<PopoverTrigger asChild>
 				<p
 					className={cn(!date && "is-empty", "custom-paragraph-input")}
@@ -26,7 +27,7 @@ const DatePicker = ({ onChange, initialDate }: DatePickerProps) => {
 					style={{ height: "100%" }}
 					contentEditable={false}
 				>
-					{date && format(date, "PPP")}
+					{date ? format(date, "PPP") : <br />}
 				</p>
 			</PopoverTrigger>
 			<PopoverContent className="w-auto p-0">

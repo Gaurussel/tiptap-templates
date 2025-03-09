@@ -5,7 +5,7 @@ import { Button } from "~/components/ui/button";
 import styled from "@emotion/styled";
 import Divider from "core/utils/components/Divider";
 import PopoverSelector from "./PopoverSelector";
-import type { InputType } from "../../inputs/models/types";
+import { InputContent, type InputType } from "../../inputs/models/types";
 import getInputName from "../../inputs/logic/getInputName";
 
 const StyledDiv = styled.div`
@@ -29,12 +29,19 @@ const SectionTitleComponent = ({ editor, getPos }: { editor: Editor; getPos: () 
 		const $pos = editor.state.doc.resolve(pos);
 		const endPos = $pos.end();
 		const schema = editor.state.schema;
+		const inputBlockName = getInputName(type, true);
 		const inputName = getInputName(type);
 
 		editor
 			.chain()
 			.focus()
-			.insertContentAt(endPos, schema.nodes[inputName].create(null, [schema.nodes.paragraph.create()]))
+			.insertContentAt(
+				endPos,
+				schema.nodes[inputBlockName].create(null, [
+					schema.nodes.paragraph.create(),
+					schema.nodes[inputName].create(null, InputContent[type] ? [schema.nodes.paragraph.create()] : null),
+				]),
+			)
 			.focus(endPos + 2)
 			.run();
 	};
@@ -51,7 +58,7 @@ const SectionTitleComponent = ({ editor, getPos }: { editor: Editor; getPos: () 
 						trigger={
 							<Button style={{ paddingTop: "0", paddingBottom: "0" }} contentEditable={false}>
 								<FontAwesomeIcon icon={faPlus} />
-								<span>Add Title</span>
+								<span>Input</span>
 							</Button>
 						}
 					/>

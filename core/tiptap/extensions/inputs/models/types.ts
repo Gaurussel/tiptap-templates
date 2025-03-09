@@ -1,25 +1,30 @@
 import type { ComponentType } from "react";
 import type { Attributes, NodeViewProps } from "@tiptap/core";
-import DateInputComponent from "../components/dateInputComponent";
-import ParagraphInputComponent from "../components/paragraphInputComponent";
+import DateInputComponent from "../components/DateInputComponent";
+import ParagraphInputComponent from "../components/ParagraphInputComponent";
 
 export enum InputType {
-	Paragraph = "paragraph",
-	Date = "date",
+	paragraph = "paragraph",
+	date = "date",
+}
+
+export enum InputBlockContent {
+	paragraph = "paragraphInput",
+	date = "dateInput",
 }
 
 export enum InputContent {
-	Paragraph = "paragraph",
+	paragraph = "paragraph",
 }
 
 export const InputComponents: Record<InputType, ComponentType<NodeViewProps>> = {
-	[InputType.Paragraph]: ParagraphInputComponent,
-	[InputType.Date]: DateInputComponent,
+	[InputType.paragraph]: ParagraphInputComponent,
+	[InputType.date]: DateInputComponent,
 };
 
 export const InputAttributes: Record<InputType, Attributes> = {
-	[InputType.Paragraph]: {},
-	[InputType.Date]: {
+	[InputType.paragraph]: {},
+	[InputType.date]: {
 		date: {
 			default: "",
 		},

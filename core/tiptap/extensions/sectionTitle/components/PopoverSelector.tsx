@@ -21,11 +21,11 @@ const PopoverSelector = ({ trigger, onClick }: { trigger: React.ReactNode; onCli
 					<p className="text-sm text-muted-foreground">Choose the type of input you want to add.</p>
 				</div>
 				<PopoverContentWrapper>
-					<Button variant="ghost" onClick={() => onClick(InputType.Paragraph)}>
+					<Button variant="ghost" onClick={() => onClick(InputType.paragraph)}>
 						<Icon icon={faParagraph} />
 						<span>Add text input</span>
 					</Button>
-					<Button variant="ghost" onClick={() => onClick(InputType.Date)}>
+					<Button variant="ghost" onClick={() => onClick(InputType.date)}>
 						<Icon icon={faCalendar} />
 						<span>Add date input</span>
 					</Button>

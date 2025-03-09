@@ -1,34 +1,42 @@
-import { NodeViewContent, NodeViewWrapper, type NodeViewProps } from "@tiptap/react";
-import Group from "./utils/Group";
-import NodeDeleteButton from "core/utils/components/NodeDeleteButton";
-import styled from "@emotion/styled";
+import { NodeViewWrapper, type NodeViewProps } from "@tiptap/react";
 import DatePicker from "~/components/ui/DatePicker";
+import { useEffect, useState } from "react";
 
-const TitleBlockWrapper = styled.div<{ pos: number }>`
-	position: relative;
-	display: flex;
+const DateInputComponent = ({ selected, node, updateAttributes, getPos, editor }: NodeViewProps) => {
+	const [isOpen, setIsOpen] = useState(false);
 
-	&:hover .paragraph-input-button-${({ pos }) => pos} {
-		opacity: 1;
-	}
-`;
-
-const DateInputComponent = ({ deleteNode, getPos, updateAttributes, node }: NodeViewProps) => {
-	const pos = getPos();
+	const closeDatePicker = () => {
+		setIsOpen(false);
+		const pos = getPos();
+		editor.commands.focus(pos - 1);
+	};
 
 	const onChangeDate = (date: Date) => {
 		updateAttributes({ date: date.toISOString() });
+		closeDatePicker();
 	};
+
+	useEffect(() => {
+		setIsOpen(selected);
+	}, [selected]);
+
+	useEffect(() => {
+		const onKeyDown = (event: KeyboardEvent) => {
+			if (event.key === "Escape") {
+				closeDatePicker();
+			}
+		};
+		window.addEventListener("keydown", onKeyDown);
+		return () => window.removeEventListener("keydown", onKeyDown);
+	}, []);
 
 	return (
 		<NodeViewWrapper>
-			<TitleBlockWrapper pos={pos}>
-				<Group inline>
-					<NodeViewContent />
-					<DatePicker onChange={onChangeDate} initialDate={node.attrs.date && new Date(node.attrs.date)} />
-				</Group>
-				<NodeDeleteButton deleteNode={deleteNode} absolute className={`paragraph-input-button-${pos}`} />
-			</TitleBlockWrapper>
+			<DatePicker
+				onChange={onChangeDate}
+				initialDate={node.attrs.date && new Date(node.attrs.date)}
+				isOpen={isOpen}
+			/>
 		</NodeViewWrapper>
 	);
 };
