@@ -151,7 +151,7 @@ body {
 	padding: 0.5em;
 }
 
-.ProseMirror .is-empty::before {
+.ProseMirror .is-empty[data-placeholder]::before {
 	content: attr(data-placeholder);
 	pointer-events: none;
 	opacity: 0.4;
@@ -167,4 +167,120 @@ body {
 
 .ProseMirror {
 	cursor: default;
+}
+
+p,
+ul,
+ol {
+	margin: 0 0 0.7em;
+	line-height: 1.8em;
+}
+
+li {
+	line-height: 1.6em;
+}
+
+li::marker {
+	user-select: none;
+}
+
+ol,
+ul {
+	margin-block-start: 0;
+	margin-bottom: 0.7em;
+}
+
+ol > li ol,
+ul > li ul {
+	margin-bottom: 0;
+}
+
+li,
+li > p {
+	margin-bottom: 0.4em !important;
+}
+
+ol {
+	counter-reset: listitem 0;
+	list-style: none;
+	padding-left: 32px !important;
+}
+
+ol > li {
+	position: relative;
+}
+
+ol > li::before {
+	top: 0.3em;
+	left: -3em;
+	width: 2em;
+	font-size: 0.625em;
+	padding: 0.5em 0;
+	font-weight: 600;
+	line-height: 1em;
+	position: absolute;
+	text-align: center;
+	border-radius: 100%;
+	content: counter(listitem);
+	counter-increment: listitem 1;
+	background: hsl(220 14.3% 95.9%);
+	color: black;
+}
+
+ol::before {
+	counter-reset: listitem;
+}
+
+ol > li::before,
+ol ol ol ol > li::before,
+ol ol ol ol ol ol ol > li::before {
+	content: counter(listitem, decimal);
+}
+
+ol ol > li::before,
+ol ol ol ol ol > li::before,
+ol ol ol ol ol ol ol ol > li::before {
+	content: counter(listitem, lower-latin);
+}
+
+ol ol ol > li::before,
+ol ol ol ol ol ol > li::before,
+ol ol ol ol ol ol ol ol ol > li::before {
+	content: counter(listitem, lower-roman);
+}
+
+ul,
+ul ul ul ul,
+ul ul ul ul ul ul ul {
+	list-style-type: disc;
+}
+
+ul ul,
+ul ul ul ul ul,
+ul ul ul ul ul ul ul ul {
+	list-style-type: circle;
+}
+
+ul ul ul,
+ul ul ul ul ul ul,
+ul ul ul ul ul ul ul ul ul {
+	list-style-type: square;
+}
+
+ol,
+ul {
+	margin-inline-start: 0;
+	margin-inline-end: 0;
+	padding-inline-start: 1.25em;
+}
+
+ul li,
+ol li {
+	line-height: 1.7em;
+	margin-bottom: 0.2em;
+}
+
+li > p,
+li > p {
+	line-height: 1.7em;
 }

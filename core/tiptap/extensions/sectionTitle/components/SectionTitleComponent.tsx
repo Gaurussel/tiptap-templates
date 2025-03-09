@@ -7,6 +7,7 @@ import Divider from "core/utils/components/Divider";
 import PopoverSelector from "./PopoverSelector";
 import { InputContent, type InputType } from "../../inputs/models/types";
 import getInputName from "../../inputs/logic/getInputName";
+import createInputContent from "../../inputs/logic/createInputContent";
 
 const StyledDiv = styled.div`
 	display: flex;
@@ -35,13 +36,7 @@ const SectionTitleComponent = ({ editor, getPos }: { editor: Editor; getPos: () 
 		editor
 			.chain()
 			.focus()
-			.insertContentAt(
-				endPos,
-				schema.nodes[inputBlockName].create(null, [
-					schema.nodes.paragraph.create(),
-					schema.nodes[inputName].create(null, InputContent[type] ? [schema.nodes.paragraph.create()] : null),
-				]),
-			)
+			.insertContentAt(endPos, createInputContent(type, editor))
 			.focus(endPos + 2)
 			.run();
 	};

@@ -1,7 +1,6 @@
 import { NodeViewContent, NodeViewWrapper, type NodeViewProps } from "@tiptap/react";
 
-const ParagraphInputComponent = ({ deleteNode, getPos }: NodeViewProps) => {
-
+const BasicInputComponent = ({}: NodeViewProps) => {
 	return (
 		<NodeViewWrapper>
 			<NodeViewContent />
@@ -9,4 +8,4 @@ const ParagraphInputComponent = ({ deleteNode, getPos }: NodeViewProps) => {
 	);
 };
 
-export default ParagraphInputComponent;
+export default BasicInputComponent;

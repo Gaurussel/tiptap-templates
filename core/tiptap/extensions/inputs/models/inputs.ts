@@ -9,7 +9,8 @@ const getInputsModels = (): Node[] => {
 
 	for (const [key, value] of Object.entries(InputType)) {
 		const inputContent = InputBlockContent[key];
-		const content = inputContent ? `paragraph ${inputContent}` : "paragraph";
+
+		const content = inputContent ? inputContent : "paragraph";
 		const name = getInputName(value, true);
 
 		nodes.push(
@@ -27,7 +28,8 @@ const getInputsModels = (): Node[] => {
 
 	for (const [key, value] of Object.entries(InputType)) {
 		const inputContent = InputContent[key];
-		const content = inputContent ? inputContent : undefined;
+
+		const content = inputContent && inputContent;
 		const name = getInputName(value);
 		const ReactComponent = InputComponents[value];
 

@@ -6,6 +6,7 @@ const ContentEditor = ({ content }: { content?: JSONContent }) => {
 		{
 			extensions: getExtensions(),
 			content,
+			injectCSS: true,
 		},
 		[content],
 	);

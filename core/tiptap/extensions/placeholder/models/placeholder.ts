@@ -19,7 +19,7 @@ const newPlaceholder = Placeholder.configure({
 		if (parentName === "paragraphBlockInput" && nodeName === "paragraph") return "Write a paragraph...";
 		if (parentName === "paragraphInput" && nodeName === "paragraph") return "Write a value...";
 		if (parentName === "dateBlockInput" && nodeName === "paragraph") return "Write a paragraph...";
-		return "";
+		return;
 	},
 	emptyEditorClass: "is-empty",
 	includeChildren: true,

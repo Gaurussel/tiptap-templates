@@ -2,7 +2,7 @@ import { Button } from "~/components/ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "~/components/ui/popover";
 import styled from "@emotion/styled";
 import { InputType } from "../../inputs/models/types";
-import { faCalendar, faParagraph } from "@fortawesome/free-solid-svg-icons";
+import { faCalendar, faListDots, faListNumeric, faParagraph } from "@fortawesome/free-solid-svg-icons";
 import Icon from "core/utils/components/Icon";
 
 const PopoverContentWrapper = styled.div`
@@ -23,11 +23,19 @@ const PopoverSelector = ({ trigger, onClick }: { trigger: React.ReactNode; onCli
 				<PopoverContentWrapper>
 					<Button variant="ghost" onClick={() => onClick(InputType.paragraph)}>
 						<Icon icon={faParagraph} />
-						<span>Add text input</span>
+						<span>Add paragraph</span>
 					</Button>
 					<Button variant="ghost" onClick={() => onClick(InputType.date)}>
 						<Icon icon={faCalendar} />
-						<span>Add date input</span>
+						<span>Add date picker</span>
+					</Button>
+					<Button variant="ghost" onClick={() => onClick(InputType.bulletList)}>
+						<Icon icon={faListDots} />
+						<span>Add bullet list</span>
+					</Button>
+					<Button variant="ghost" onClick={() => onClick(InputType.orderedList)}>
+						<Icon icon={faListNumeric} />
+						<span>Add ordered list</span>
 					</Button>
 				</PopoverContentWrapper>
 			</PopoverContent>
