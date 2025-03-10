@@ -42,7 +42,11 @@ const NodeDeleteButton = ({ deleteNode, absolute, className }: NodeDeleteButtonP
 	return (
 		<ButtonWrapper className={cn(className, absolute && "absolute")} onClick={onClick}>
 			<div className="node-delete-button-wrapper">
-				<Button variant="ghost" size="icon">
+				<Button
+					variant="ghost"
+					size="icon"
+					style={{ height: absolute && "max(calc(var(--spacing)* 9), 100%)" }}
+				>
 					<Icon icon={faTrash} />
 				</Button>
 			</div>
